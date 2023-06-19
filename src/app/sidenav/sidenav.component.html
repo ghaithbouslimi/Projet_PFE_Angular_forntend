@@ -1,0 +1,24 @@
+
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''">
+     <div class="logo">
+        <a class="ouvre" (click)="toggleCollapse()">
+            <img src="assets/img/favicon.png" alt="" style="width:100px">
+        </a>
+        <div class="title" >
+          <img src="assets/img/LOGO_SAGEMCOM_RVB.png" alt="">
+        </div>
+     </div>  
+
+    <ul class="sidenav-nav">
+        <h6>{{Role}}</h6>
+
+        <li class="sidenav-nav-item" *ngFor="let data of navData">
+            <a class="sidenav-nav-link" [routerLink]="[data.routeLink]"  >
+                <span class="material-symbols-outlined" >{{data.icon}}</span>
+                <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
+            </a> 
+        </li>
+        
+    </ul>
+</div>
+

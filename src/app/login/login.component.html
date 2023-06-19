@@ -1,0 +1,27 @@
+<body> 
+    <div class="image">
+        <img src="assets/img/LOGO_SAGEMCOM_RVB.png">
+    </div>
+    <div class="box">
+        <div class="form1" >
+            <form action="" (ngSubmit)="onSubmit()" >
+            <img src="assets/img/favicon.png">
+            <h2>Sign in</h2>
+            <div class="inputBox">
+                <input type="text"  name="username" [(ngModel)]="form.username"  required>
+                <span>Matricule</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" [(ngModel)]="form.password"  required>
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="links">
+                <a href="#">Signup</a>
+            </div>
+            <input  type="submit" value="Login">
+        </form>
+        </div>
+    </div>
+</body>

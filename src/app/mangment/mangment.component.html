@@ -1,0 +1,76 @@
+<ng-container *ngIf="isAdmin"><app-sidenav></app-sidenav></ng-container>
+<ng-container *ngIf="isOp"><app-sidenav-oa></app-sidenav-oa></ng-container>
+<div class="titre" id="header">
+  <h1 style="">Dashboard</h1> 
+</div>
+
+<section class="main">
+<div class="container">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6">
+      <div id="Users" class="col"  style="margin-left: 40%;">
+        <div class="card card-stats mb-4 mb-xl-0">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0">Socket</h5>
+               <span class="h2 font-weight-bold mb-0"></span>
+              </div>
+              <div class="col-auto">
+                <a  [routerLink]="['/socket']">
+                  <span class="material-symbols-outlined">
+                    pinch
+                    </span>
+                </a>
+              </div>
+            </div>
+            <p class="mt-3 mb-0 text-muted text-sm">
+              <span class="text-dark">Total : </span>
+              <span class="text-info mr-2">{{numSocket}}</span>
+              <br><span class="text-nowrap">Enable : </span>  
+              <span class="text-info mr-2">{{EnableEtat}}</span>
+              <br><span class="text-danger">Desable : </span>
+             <span class="text-info mr-2">{{DesableEtat}}</span>
+            </p>
+          </div>
+    </div>
+</div>
+</div>
+    <div class="col-xl-6 col-lg-6">
+      <div id="Users" class="col"  style="margin-left: 40%;">
+        <div class="card card-stats mb-4 mb-xl-0">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0">UsPicklist</h5>
+               <span class="h2 font-weight-bold mb-0"></span>
+              </div>
+              <div class="col-auto">
+                <a  [routerLink]="['/suivius']">
+                  <span class="material-symbols-outlined">
+                    pinch
+                    </span>
+                </a>
+              </div>
+            </div>
+            <p class="mt-3 mb-0 text-muted text-sm">
+              <span class="text-dark">Total : </span>
+              <span class="text-info mr-2">{{numUs}}</span>
+              <br><span class="text-nowrap">CONSOMME : </span>
+              <span class="text-info mr-2">{{Consomme}}</span>
+              <br><span class="text-danger">NON CONSOMME : </span>
+              <span class="text-info mr-2">{{NonConsomme}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+</div>
+</div>
+<div class="pie-chart">
+  <app-pie-chart></app-pie-chart>
+</div>
+</section>
+
+

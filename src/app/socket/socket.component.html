@@ -1,0 +1,109 @@
+<ng-container *ngIf="isOA"><app-sidenav-oa></app-sidenav-oa></ng-container>
+<ng-container *ngIf="isAdmin"><app-sidenav></app-sidenav></ng-container>
+  <body>
+  
+    <main class="table" id="socket-table">
+        <section class="table__header">
+            <h1 style="margin-left: 40%; margin-top: 1%;">Edit Socket </h1>
+            <div class="role">
+            </div>
+            <div class="role">
+              <app-profile></app-profile>
+            </div>
+       
+        </section>
+        <section class="table__body">
+          <div  id="htmlData">
+            <table>
+                <thead>
+                    <tr >
+                      <th >ID</th>
+                      <th >Server </th>
+                      <th >Port</th>
+                      <th >Client</th>
+                      <th >Status</th>
+                      <th >Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of socketData; " >
+                        <td>{{i.id_socket}}  </td>
+                        <td> {{i.serveur}}</td>
+                        <td> {{i.port}} </td>
+                        <td>{{i.client}}</td>
+                        <td>
+                          <a> 
+                            <ng-container *ngIf=" i.etat == 'enable'">
+                              <a  class="success" (click)="changeStatus(i)"
+                              style="width:25%;font-size: 25px;"> 
+                              <span class="material-symbols-outlined">
+                                toggle_on
+                                </span>
+                              </a>
+                            </ng-container>
+                            <ng-container *ngIf="i.etat =='desable'">
+                              <a  class="erreur"(click)="changeStatus(i)"
+                              style="width:25%;font-size: 25px;"> 
+                              <span class="material-symbols-outlined">
+                                toggle_off
+                                </span>
+                              </a>
+                            </ng-container>
+    
+                        </a>
+                        </td>
+                        <td> 
+                          <ng-container *ngIf="Role == 'ROLE_ADMIN'||Role=='ROLE_OPERATOR'||Role=='ROLE_AGENT'">
+                          <a type="button"  data-bs-toggle="modal"
+                           data-bs-target="#exampleModal" (click)="editSocket(i)"
+                           >
+                           <span class="material-symbols-outlined" style="color:blue">
+                            edit_square
+                            </span>
+                          </a>
+                        </ng-container>
+                          </td>
+                        </tr>
+                
+                </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+
+</body>
+
+          <!-- Modal -->  
+    <div class="modal" style="width: 25%;height: 50%; margin-left: 40%;margin-top: 10%;"
+     id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true" >
+            <div class="modal-dialog" style="align-items: center;">
+              <div class="modal-content" style="align-items: center;">
+                <div class="modal-body" style="align-items: center;">
+                  <div class="box" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                   aria-hidden="true" style="align-items: center;">
+                    <div class="form1" >
+                        <form action="" >
+                        <h2 style="margin-top: 5%;">Configuration </h2>
+                        <div class="inputBox">
+                          <h6>Port : </h6>
+                            <input type="text"  name="port"   required [(ngModel)]="form.port">
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                          <h6>Adresse IP Serveur : </h6>
+                          
+                            <input type="text" name="serveur"  required  [(ngModel)]="form.serveur">
+                            <i></i>
+                        </div>
+                        <input class="btn btn-success"  type="submit" value="Update" style="margin-top: 4%; margin-left: 20%;" (click)="updateSocket()">
+                        <input type="button" value="Close" class="btn btn-secondary" data-bs-dismiss="modal" style="margin-top: 8%;">
+
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div> 
+

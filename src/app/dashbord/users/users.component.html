@@ -1,0 +1,186 @@
+<app-sidenav></app-sidenav>
+<body style="margin-left: 5%;">  
+<main class="table" id="socket-table">
+    <section class="table__header">
+      <a  data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <span class="material-symbols-outlined">
+            person_add
+            </span>
+        </a>
+        <div class="title">
+          <h1  >  Managment Users  </h1>
+        </div>
+        <div class="role">
+          <app-profile></app-profile>
+        </div>
+   
+      
+        
+    </section>
+    <section class="table__body">
+      <div  id="htmlData">
+        <table>
+            <thead>
+                <tr >
+                  <th >Matricule</th>
+                  <th >Email</th>
+                  <th >Role</th>
+                  <!-- <th>Block</th> -->
+                  <th >Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of UserList">
+                    <td>
+                     {{item.username}}
+                    </td>
+                    <td>
+                     {{item.email}}
+                    </td>
+                     
+                       <td >
+                        <ul>
+                        <li *ngFor="let user of item.roles">{{ user.name }}</li>
+                        </ul>
+                      </td>
+                  
+                    <td> 
+                      <a (click)="editUser(item)" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                        <span class="material-symbols-outlined" style="color:blue">
+                          edit_square
+                          </span>
+                        </a>
+                      <a (click)="deleteUser(item)">
+                        <span class="material-symbols-outlined" style="color:red">
+                          delete
+                          </span>
+                      </a>
+                      
+                      </td>
+                    </tr>
+            
+            </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+
+
+
+  
+  <!-- Modal ADD-->
+  <div class="modal fade" id="exampleModal" tabindex="-1"
+   aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style="margin-left: 10%">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"  style="margin-left: 40%; color: red;">ADD </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form name="form"  #f="ngForm" >
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Matricule </label>
+                    <input type="text" name="matricule" [(ngModel)]="form.matricule"  class="form-control" 
+                    id="matricule" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username </label>
+                    <input type="text" name="username" [(ngModel)]="form.username"  class="form-control" 
+                    id="username" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email </label>
+                    <input type="text" name="email" [(ngModel)]="form.email"  class="form-control"
+                     id="password" aria-describedby="emailHelp">
+                  </div>  
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Password </label>
+                    <input type="password" name="password" [(ngModel)]="form.password"  class="form-control" 
+                    id="password" aria-describedby="emailHelp">
+                  </div>
+                  <label for="exampleInputEmail1" class="form-label">Role </label>
+                  <div class="mb-3">
+                    <form  (ngSubmit)="onSubmit()" >
+                    <select id="mySelect" [(ngModel)]="SelectedRole" name="selectedOption" >
+                    <option *ngFor="let n of RoleList" [ngValue]="n" >{{n.name}}</option>
+                    </select>
+           
+                  </form>
+                   </div>
+                <!-- <tr>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Role </label>
+                    <input type="text" name="role" [(ngModel)]="form.role"  class="form-control" id="role" aria-describedby="emailHelp">
+                  </div>
+                </tr> -->
+                  
+                  <div class="mb-3">    
+                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                      <div class="mb-3">
+                          <button type="submit" class="btn btn-success" (click)="PostUser()">ADD </button>
+                      </div>
+                  
+                </form>     
+      </div>
+        </div>
+    </div>
+  </div>
+
+
+  
+  <!-- Modal EDit -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" 
+  aria-labelledby="exampleModalLabel1" aria-hidden="true"
+  style="margin-left: 10%;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 40%; color: red;">Edit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form name="form"  #f="ngForm">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Matricule </label>
+                    <input type="text" name="username" [(ngModel)]="form.username"  class="form-control"
+                     id="matricule" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email </label>
+                    <input type="text" name="email" [(ngModel)]="form.email"  class="form-control"
+                     id="password" aria-describedby="emailHelp">
+                  </div>  
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Password </label>
+                    <input type="password" name="password" [(ngModel)]="form.password"  class="form-control"
+                     id="password" aria-describedby="emailHelp">
+                  </div>
+                  <label for="exampleInputEmail1" class="form-label">Role </label>
+                  <div class="mb-3">
+                    <form name="formRole" >
+                    <select id="mySelect" [(ngModel)]="SelectedRole" name="selectedOption" >
+                    <option *ngFor="let n of RoleList" [ngValue]="n">{{n.name}}</option>
+                    </select>
+                  </form>
+                   </div>
+                </form>     
+        </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          <div class="mb-3">
+            <button type="button" class="btn btn-success" (click)="updateUser()">Save changes</button>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+  
+  
+
+  

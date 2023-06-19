@@ -1,0 +1,125 @@
+<app-sidenav></app-sidenav>
+<body>
+    
+<main class="table" id="socket-table">
+    <section class="table__header">
+      <a  data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <span class="material-symbols-outlined" >
+            add
+            </span>
+     </a>
+        <h1 > Managment Roles </h1>
+            <div class="role">
+              <app-profile></app-profile>
+            </div>
+       
+        
+    </section>
+    <section class="table__body">
+      <div  id="htmlData">
+        <table>
+            <thead>
+                <tr >
+                  <th >ID</th>
+                  <th >Role Name </th>
+                  <!-- <th >Action</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of ListRole">
+                    <td>
+                     {{i.id}}
+                    </td>
+                    <td>
+                     {{i.name}}
+                    </td>
+          
+                    
+                    <!-- <td> 
+      
+                            <a (click)="editRole(i)"  data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                  <span class="material-symbols-outlined" style="color:blue">
+                                  edit_square
+                                  </span>
+                            </a>                          
+                            <a (click)="deleteRole(i)">
+                              <span class="material-symbols-outlined" style="color:red">
+                              delete
+                              </span>
+                             </a>   
+                    </td> -->
+                   
+                    </tr>
+            
+            </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+
+
+
+<!-- ADD -->
+<div class="modal fade" id="exampleModal" tabindex="-1" 
+aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-left: 30%; margin-top: 10%;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 40%; color: red;">ADD </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form  name="form"  #f="ngForm">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Role Name </label>
+            <input type="text" name="name" [(ngModel)]="form.name"  class="form-control"
+             id="matricule" aria-describedby="emailHelp">
+          </div>
+         
+        </form>
+      </div>
+      <div class="mb-3">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-success" (click)="addRole()">ADD</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Edit -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" 
+aria-labelledby="exampleModalLabel1" aria-hidden="true" 
+style="margin-left: 30%; margin-top: 10%;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 40%; color: red;">Edit </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form  name="form"  #f="ngForm">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Role Name </label>
+            <input type="text" name="name" [(ngModel)]="form.name"  
+            class="form-control" id="matricule" aria-describedby="emailHelp">
+          </div>
+         
+        </form>
+      </div>
+      <div class="mb-3">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-success" (click)="UpdateRole()">Save Changes</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+

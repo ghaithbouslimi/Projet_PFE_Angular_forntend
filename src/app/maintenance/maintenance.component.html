@@ -1,0 +1,74 @@
+<app-sidenav-oa></app-sidenav-oa>
+<body>
+    
+<main class="table" id="socket-table">
+    <section class="table__header">
+        <h1 style="margin-left: 28%;"> Picklist repairs  </h1>
+       <div class="role">
+        <app-profile></app-profile>
+       </div>    
+       
+        
+    </section>
+    <section class="table__body">
+      <div  id="htmlData">
+        <table>
+            <thead>
+                <tr >
+                  <th >Picklist</th>
+                  <th>Ligne-Production</th>
+                  <th>Statut</th>
+                  <th>Emplacement</th>
+                  <th>Socket</th>
+                  <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ListUS">
+                    <td>
+                     picklist {{item.idUsPickliste}}
+                    </td>
+                    <td>
+                      {{item.ligneProduction.hostname}}
+                    </td>
+                    <td>
+                      <ng-container *ngIf="item.idstatus.code =='CONSOMMER'"><p class="status delivered">CONSOMMER</p></ng-container>
+                      <ng-container *ngIf="item.idstatus.code =='NON CONSOMMER'"><p class="status cancelled">NON CONSOMMER</p></ng-container>
+                    </td>
+                    <td>
+                      <select id="selectEmp" name="emplacemment">
+                      <option>ACC</option>
+                      <option>SAP</option>
+                      <option>SAP R/1</option>
+                      <option>SAP R/2</option>
+                      <option>SAP R/3</option>
+                      </select>
+                    </td> 
+                    <td> <select id="mySelect"  name="selectedOption" 
+                      >
+                        <option *ngFor="let n of SocketList" >port:  {{n.port}}</option>
+                  
+                      </select></td>
+                    <td>
+                      <ng-container *ngIf="item.idstatus.code =='NON CONSOMMER'">
+                        <div class="success">
+                          <a (click)="Validated(item)">
+                            <span class="material-symbols-outlined">
+                            toggle_on
+                            </span>
+                          </a>
+                        </div>
+                       
+                      </ng-container>
+      
+                    </td>
+                    </tr>
+            
+            </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+
+

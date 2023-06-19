@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+      <img src="assets/img/white.png">
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+        
+          <li class="nav-item">
+            <a class="nav-link" style="color:white;" routerLink="/suivius" routerLinkActive="active-link">Follow US</a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link"  style="color:white;" routerLink="/socket" routerLinkActive="active-link">Follow Socket</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  style="color:white;" routerLink="/mangment" routerLinkActive="active-link" *ngIf="isAdmin" >Back Office</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  style="color:white;" routerLink="/maintenance" routerLinkActive="active-link" *ngIf="isOp" >Picklist repairs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color:white; font-size: 30px;" routerLink="/login" routerLinkActive="active-link" (click)="logout()">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+
+            </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="color:white; font-size: 30px;" 
+                  routerLink="/profile" routerLinkActive="active-link" >
+                    <span class="material-symbols-outlined">
+                      account_box
+                      </span>   
+                      <div class="account" >
+                      </div>
+                  </a>
+                </li>
+                
+        </ul>
+      </div>
+   
+
+    
+
+    </div>
+  </nav>

@@ -1,0 +1,87 @@
+<app-sidenav></app-sidenav>
+<body>
+    
+<main class="table" id="socket-table">
+    <section class="table__header">
+        <h1 style="margin-left: 30%;" > Launch of the Socket  </h1>
+        <div class="role">
+          <app-profile></app-profile>
+        </div>
+      
+       
+        
+    </section>
+    <section class="table__body">
+      <div  id="htmlData">
+        <table>
+            <thead>
+                <tr >
+                  <th >ID</th>
+                  <th>Port</th>
+                  <th>Emplacement</th>
+                  <th>Statut</th>
+                  <th>Path.Log</th>
+                  <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ListSocket">
+                    <td>
+                     {{item.id_socket}}
+                    </td>
+                    
+                    <td>
+                      {{item.port}}
+                    </td>
+                    <td><select id="selectEmp" name="emplacemment"
+                      [(ngModel)]="selectedFile" (change)="onFileChange($event)"
+                      >
+                      <option>ACC</option>
+                      <option>SAP R/1</option>
+                      <option>SAP R/2</option>
+                      <option>SAP R/3</option>
+                      </select></td>
+                      
+                    <td>
+                      <ng-container *ngIf="item.etat =='enable'"><p class="status delivered">ON</p></ng-container>
+                      <ng-container *ngIf="item.etat =='desable'"><p class="status cancelled">OFF </p></ng-container>
+
+                    </td> 
+                   <td> 
+                    <ng-container *ngIf="item.etat =='enable'">
+                      
+                      <input type="file"  [(ngModel)]="selectedFileName" (change)="onFileChange($event)">
+                    </ng-container>
+                  </td>
+                    <td>
+                      <ng-container *ngIf="item.etat =='enable'">
+                        <div class="success">
+                          <a (click)="launchSchedule(item)">
+                            <span class="material-symbols-outlined">
+                              change_circle
+                              </span>
+                          </a>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="item.etat =='desable'">
+                        <div class="erreur">
+                          <a (click)="NotValidated(item)">
+                            <span class="material-symbols-outlined">
+                              symptoms
+                              </span>
+                          </a>
+                          </div>  
+                       </ng-container>
+                        
+      
+                    </td>
+                    </tr>
+            
+            </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+
+
